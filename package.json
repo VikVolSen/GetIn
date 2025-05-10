@@ -1,0 +1,23 @@
+{
+  "name": "getin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VikVolSen/GetIn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VikVolSen/GetIn/issues"
+  },
+  "homepage": "https://github.com/VikVolSen/GetIn#readme",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.7.0",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.17"
+  }
+}
