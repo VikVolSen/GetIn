@@ -32,8 +32,8 @@ test.describe('Registration flow => ', () => {
     await page.getByRole('textbox', { name: 'First name' }).fill(faker.person.firstName())
     await page.getByRole('textbox', { name: 'Last name' }).fill(faker.person.lastName())
     await page.selectOption('#gender', { label: 'Male' });
-    await page.getByRole('textbox', { name: 'Date of Birth' }).click()
-    await page.getByText('Set').click()
+    await page.locator('.mat-mdc-button-touch-target').nth(1).click()
+    await page.getByRole('button', { name: 'December 8,' }).click()
     await page.getByRole('button', { name: 'finish' }).click()
 
     await expect(page.getByText('Welcome, loading home page')).toBeVisible()
@@ -63,8 +63,7 @@ test.describe('Registration flow => ', () => {
     await expect(page.getByText('Welcome to Getin')).toBeVisible()
 
     await page.getByRole('textbox', { name: 'Your name' }).fill(`${faker.person.firstName()} ${faker.person.lastName()}`)
-    await page.getByPlaceholder('DD-MM-YY').click()
-    await page.getByText('Set').click()
+    await page.locator('input[name="dob"]').fill('2007-05-17');
     await page.getByRole('button', {name: 'Continue'}).click()
 
     await expect(page.getByText('Order Summary')).toBeVisible()

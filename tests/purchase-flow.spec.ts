@@ -18,7 +18,7 @@ test('should purchase ticket successesfull', async ({ page }) => {
   await page.locator('.ticket-btn').first().click();
   await page.locator('div').filter({ hasText: /^continue$/ }).click();
   await page.getByText('Login with email').click()
-  await page.getByPlaceholder('email').fill('vik-sen@ukr.net')
+  await page.getByPlaceholder('email').fill('vikvolsen@gmail.com')
   await page.locator('#continuebtn').click()
 
   const response = await page.waitForResponse(res =>
@@ -39,9 +39,14 @@ test('should purchase ticket successesfull', async ({ page }) => {
   await cardNumberFrame.locator('input[name="cvc"]').fill('123');
   await cardNumberFrame.locator('input[name="postal"]').fill('555555');
   await page.getByText('Continue1 ticket$').click();
-  await page.getByText('🎉 Woohoo!').click();
-  await page.getByText('🎟️ Your Ticket is Locked In!').click();
+  await expect(page.getByText('🎉 Woohoo!')).toBeVisible();
+  await expect(page.getByText('🎟️ Your Ticket is Locked In!')).toBeVisible();
   await page.getByRole('button', { name: 'View Your Ticket' }).click();
+
+  if (await page.locator('app-try-beta-modal').getByRole('img').isVisible()) {
+    await page.locator('app-try-beta-modal').getByRole('img').click()
+  }
+
   await page.getByRole('button', { name: 'View Ticket' }).first().click();
   await expect(page.locator('qrcode canvas')).toBeVisible
 });
